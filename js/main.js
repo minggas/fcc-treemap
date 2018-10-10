@@ -67,17 +67,11 @@ function makeGraph(end) {
       .append("text")
       .attr("class", "tile-text")
       .selectAll("tspan")
-      .data(function(d) {
-        return d.data.name.split(/(?=[A-Z][^A-Z])/g);
-      })
+      .data(d => d.data.name.split(/(?=[A-Z][^A-Z])/g))
       .enter()
       .append("tspan")
       .attr("x", 4)
-      .attr("y", function(d, i) {
-        return 13 + i * 10;
-      })
-      .text(function(d) {
-        return d;
-      });
+      .attr("y", (d, i) => 13 + i * 10)
+      .text(d => d);
   });
 }
