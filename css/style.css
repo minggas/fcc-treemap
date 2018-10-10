@@ -1,0 +1,9 @@
+rect {
+  fill: cadetblue;
+  stroke: white;
+  overflow: hidden;
+}
+
+tspan {
+  font-size: 0.6rem;
+}
