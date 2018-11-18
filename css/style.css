@@ -1,9 +1,19 @@
 rect {
-  fill: cadetblue;
+
   stroke: white;
   overflow: hidden;
 }
 
 tspan {
   font-size: 0.6rem;
+}
+
+#legend {
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  padding-bottom: 5px;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
 }
