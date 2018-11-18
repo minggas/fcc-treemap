@@ -21,34 +21,36 @@ const DATA_SET = {
   }
 };
 
-const width = 960,
-  height = 580;
+let svg = d3.select("#container");
 
-const svg = d3
-  .select(".container")
-  .append("svg")
-  .attr("width", width)
-  .attr("height", height);
+let width = +svg.attr("width"),
+  height = +svg.attr("height");
+
+const fader = color => d3.interpolateRgb(color, "#fff")(0.2);
+const color = d3.scaleOrdinal().range(d3.schemeCategory10.map(fader)),
+  format = d3.format(",d");
+
+let treemap = d3
+  .treemap()
+  .size([width, height])
+  .paddingInner(1);
 
 makeGraph(DATA_SET.games.END);
 
 function makeGraph(end) {
   d3.json(end).then(data => {
     console.log(data);
-    const treemapLayout = d3
-      .treemap()
-      .size([width, height])
-      .paddingOuter(1);
 
-    const root = d3
+    let root = d3
       .hierarchy(data)
-      .eachBefore(d => {
-        d.data.id = (d.parent ? d.parent.data.id + "." : "") + d.data.name;
-      })
+      .eachBefore(
+        d =>
+          (d.data.id = (d.parent ? d.parent.data.id + "." : "") + d.data.name)
+      )
       .sum(d => d.value)
       .sort((a, b) => b.height - a.height || b.value - a.value);
 
-    treemapLayout(root);
+    treemap(root);
 
     let cell = svg
       .selectAll("g")
@@ -61,7 +63,8 @@ function makeGraph(end) {
     let tile = cell
       .append("rect")
       .attr("width", d => d.x1 - d.x0)
-      .attr("height", d => d.y1 - d.y0);
+      .attr("height", d => d.y1 - d.y0)
+      .attr("fill", d => color(d.data.category));
 
     cell
       .append("text")
