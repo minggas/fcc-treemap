@@ -45,8 +45,7 @@ makeGraph(DATA_SET.games.END);
 
 function makeGraph(end) {
   d3.json(end).then(data => {
-    console.log(data);
-
+    d3.selectAll("svg > *").remove();
     let root = d3
       .hierarchy(data)
       .eachBefore(
