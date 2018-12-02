@@ -41,8 +41,6 @@ let treemap = d3
   .size([width, height])
   .paddingInner(1);
 
-makeGraph(DATA_SET.games.END);
-
 function makeGraph(end) {
   d3.json(end).then(data => {
     d3.selectAll("svg > *").remove();
@@ -157,3 +155,22 @@ function makeGraph(end) {
       });
   });
 }
+
+const title = document.getElementById("title");
+const description = document.getElementById("description");
+const searchSelector = document.getElementById("type");
+
+searchSelector.addEventListener("change", handleChange);
+
+function handleChange(event) {
+  event.preventDefault();
+  fetchData(event.target.value);
+}
+
+function fetchData(type) {
+  title.innerHTML = DATA_SET[type].TITLE;
+  description.innerHTML = DATA_SET[type].DESCR;
+  makeGraph(DATA_SET[type].END);
+}
+
+fetchData(searchSelector.value);
