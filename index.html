@@ -12,10 +12,22 @@
 <body>
   <h1 id='title'></h1>
   <div id='description'></div>
-  <svg id='container' width="960" height="570"></svg>
-  <svg id='legend' width="500"></svg>
+  <label for="type">
+    Select a Treemap
+    <select name="type" id="type">
+      <option value="games" selected>Game</option>
+      <option value="movies">Movies</option>
+      <option value="kickstarter">Kickstarter</option>
+    </select>
+  </label>
+  <div class="svg-container" id="svg-container">
+    <svg id='container' class="svg-content" width="960" height="570"></svg>
+    <svg id='legend' class="svg-content" width="500"></svg>
+  </div>
+
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 </body>
 
 </html>
