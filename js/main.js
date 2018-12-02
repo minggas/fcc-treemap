@@ -123,7 +123,7 @@ function makeGraph(end) {
 
     var legendElem = legend
       .append("g")
-      .attr("transform", "translate(60," + LEGEND_OFFSET + ")")
+      .attr("transform", "translate(40," + LEGEND_OFFSET + ")")
       .selectAll("g")
       .data(categories)
       .enter()
