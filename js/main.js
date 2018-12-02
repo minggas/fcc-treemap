@@ -73,7 +73,25 @@ function makeGraph(end) {
       .attr("data-value", d => d.data.value)
       .attr("width", d => d.x1 - d.x0)
       .attr("height", d => d.y1 - d.y0)
-      .attr("fill", d => color(d.data.category));
+      .attr("fill", d => color(d.data.category))
+      .on("mousemove", d => {
+        tooltip.style("opacity", 0.9);
+        tooltip
+          .html(
+            "Name: " +
+              d.data.name +
+              "<br>Category: " +
+              d.data.category +
+              "<br>Value: " +
+              d.data.value
+          )
+          .attr("data-value", d.data.value)
+          .style("left", d3.event.pageX + 10 + "px")
+          .style("top", d3.event.pageY - 28 + "px");
+      })
+      .on("mouseout", d => {
+        tooltip.style("opacity", 0);
+      });
 
     cell
       .append("text")
