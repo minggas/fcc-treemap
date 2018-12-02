@@ -20,8 +20,14 @@ const DATA_SET = {
       "https://cdn.rawgit.com/freeCodeCamp/testable-projects-fcc/a80ce8f9/src/data/tree_map/video-game-sales-data.json"
   }
 };
-
+const body = d3.select("body");
 let svg = d3.select("#container");
+
+var tooltip = body
+  .append("div")
+  .attr("class", "tooltip")
+  .attr("id", "tooltip")
+  .style("opacity", 0);
 
 let width = +svg.attr("width"),
   height = +svg.attr("height");
